@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Coffee Date Invitation</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: linear-gradient(135deg, #f78ca0, #f9748f, #d54b60);
+      color: white;
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+    }
+    h1 {
+      font-size: 3rem;
+      margin-bottom: 20px;
+    }
+    p {
+      font-size: 1.5rem;
+      margin: 20px 0;
+    }
+    .button-container {
+      margin-top: 30px;
+    }
+    button {
+      padding: 15px 30px;
+      font-size: 1.2rem;
+      color: #fff;
+      background-color: #d54b60;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
+    button:hover {
+      background-color: #f78ca0;
+    }
+    #date-time-container {
+      display: none;
+      margin-top: 30px;
+    }
+    #confirmation {
+      display: none;
+      font-size: 2rem;
+      color: #fff;
+      margin-top: 30px;
+    }
+  </style>
+</head>
+<body>
+  <h1>You're Invited!</h1>
+  <p>Would you like to go on a coffee date with me?</p>
+  <div class="button-container">
+    <button id="yesButton">Yes</button>
+    <button id="noButton">No</button>
+  </div>
+
+  <div id="date-time-container">
+    <p>Please choose your preferred date and time:</p>
+    <input type="datetime-local" id="dateTime" />
+    <br>
+    <button id="submitDateTime">Submit</button>
+  </div>
+
+  <div id="confirmation">
+    <p>See you on <span id="selectedDate"></span>!</p>
+  </div>
+
+  <script>
+    document.getElementById("yesButton").addEventListener("click", function() {
+      document.getElementById("date-time-container").style.display = "block";
+    });
+
+    document.getElementById("noButton").addEventListener("click", function() {
+      document.getElementById("confirmation").style.display = "block";
+      document.getElementById("confirmation").innerHTML = "<p>Maybe next time!</p>";
+    });
+
+    document.getElementById("submitDateTime").addEventListener("click", function() {
+      var selectedDateTime = document.getElementById("dateTime").value;
+      if (selectedDateTime) {
+        document.getElementById("confirmation").style.display = "block";
+        document.getElementById("selectedDate").textContent = new Date(selectedDateTime).toLocaleString();
+        document.getElementById("date-time-container").style.display = "none";
+      } else {
+        alert("Please select a date and time.");
+      }
+    });
+  </script>
+</body>
+</html>
